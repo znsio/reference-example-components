@@ -122,7 +122,7 @@ exports.deletePartyRole = function(req, res, next) {
           doc = cleanPayloadServiceType(doc);
           notificationUtils.publish(req,doc);
         } else {
-          sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+          sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"deletePartyRole: No resource with given id found"));
         }
  
         db.collection(resourceType)
@@ -131,7 +131,7 @@ exports.deletePartyRole = function(req, res, next) {
           if (doc.result.n == 1) {
               sendDoc(res, 204, {});
           } else { 
-              sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+              sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"deletePartyRole: No resource with given id found"));
           }
         }).catch(error => sendError(res, internalError))        
 
@@ -298,7 +298,7 @@ exports.patchPartyRole = function(req, res, next) {
         .findOne(query)
         .then(old => {
           if (old==undefined) {
-            return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id"));
+            return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"patchPartyRole: No resource with given id"));
           }
 
           payload = swaggerUtils.updatePayloadServiceType(payload, req, 'id');
@@ -327,7 +327,7 @@ exports.patchPartyRole = function(req, res, next) {
           })
         .catch((error) => {
           console.error("patchPartyRole error=" + error);
-          return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id"));
+          return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"patchPartyRole: No resource with given id"));
         });        
       })
       .catch((error) => {
@@ -378,7 +378,7 @@ exports.retrievePartyRole = function(req, res, next) {
           doc = cleanPayloadServiceType(doc);
           sendDoc(res, 200, doc)
         } else {
-          sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+          sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"retrievePartyRole: No resource with given id found"));
         }
       })
       .catch(error => {

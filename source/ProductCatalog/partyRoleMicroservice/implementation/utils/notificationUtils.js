@@ -70,7 +70,7 @@ function show(req, res, next) {
           if(isObject(doc)) {
             sendDoc(res, 200, doc)
           } else {
-            sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+            sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"show: No resource with given id found"));
           }
         })
         .catch(error => {
@@ -324,7 +324,7 @@ function unregister(req, res, next) {
         if (doc.result.n == 1) {
            sendDoc(res, 204, {});
         } else { 
-           sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id"));
+           sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"unregister: No resource with given id: " + id + " found"));
         }
       }).catch(error => sendError(res, internalError))
     })

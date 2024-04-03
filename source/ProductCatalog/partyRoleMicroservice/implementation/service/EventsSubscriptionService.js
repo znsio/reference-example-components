@@ -70,7 +70,6 @@ exports.unregisterListener = function(req, res, next) {
    * no response value expected for this operation
    **/
 
-  console.log('unregisterListener called');
   console.log('unregisterListener :: ' + req.method + ' ' + req.url + ' ' + req.headers.host);
   notificationUtils.unregister(req, res, next);  
 
