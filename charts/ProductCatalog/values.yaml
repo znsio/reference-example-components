@@ -18,6 +18,7 @@ mongodb:
   database: tmf
 api:
   image: csotiriou/productcatalogapi:0.10
+  versionlabel: productcatalogapi-0.10
   otlp:
     console:
       enabled: false
@@ -26,3 +27,4 @@ api:
       url: http://datadog-agent.default.svc.cluster.local:4318/v1/traces
 partyrole:
   image: lesterthomas/partyroleapi:1.0
+  versionlabel: partyroleapi-1.0
