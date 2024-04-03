@@ -40,12 +40,24 @@ exports.registerListener = function(req, res, next) {
    **/
 
   console.log('registerListener :: ' + req.method + ' ' + req.url + ' ' + req.headers.host);
-
-
-  /* matching tmfHub & isRestfulCreate */
-
   notificationUtils.register(req, res, next);  
 
+
+};
+
+exports.listListener = function(req, res, next) {
+  /**
+   * List or find Listener objects
+   * This operation list or find Listener entities
+   *
+   * fields String Comma-separated properties to be provided in response (optional)
+   * offset Integer Requested index for start of resources to be provided in response (optional)
+   * limit Integer Requested number of resources to be provided in response (optional)
+   * returns List
+   **/
+
+  console.log('listListener :: ' + req.method + ' ' + req.url + ' ' + req.headers.host);
+  notificationUtils.index(req, res, next)
 
 };
 
@@ -58,11 +70,8 @@ exports.unregisterListener = function(req, res, next) {
    * no response value expected for this operation
    **/
 
+  console.log('unregisterListener called');
   console.log('unregisterListener :: ' + req.method + ' ' + req.url + ' ' + req.headers.host);
-
-
-  /* matching tmfHub & isRestfulDestroy */
-
   notificationUtils.unregister(req, res, next);  
 
 

@@ -69,17 +69,17 @@ exports.createPartyRole = function(req, res, next) {
             notificationUtils.publish(req,payload);
           })
           .catch((error) => {
-            console.log("createPartyRole: error=" + error);
+            console.error("createPartyRole: error=" + error);
             sendError(res, internalError);
           })
       })
       .catch((error) => {
-        console.log("createPartyRole: error=" + error);
+        console.error("createPartyRole: error=" + error);
         sendError(res, internalError);
       })
     })
     .catch( error => {
-      console.log("createPartyRole: error=" + error.toString());
+      console.error("createPartyRole: error=" + error.toString());
       sendError(res, error);
     });
 
@@ -138,7 +138,7 @@ exports.deletePartyRole = function(req, res, next) {
 
       })
       .catch(error => {
-        console.log("deletePartyRole: error=" + error);
+        console.error("deletePartyRole: error=" + error);
         sendError(res, internalError);
       });
       
@@ -243,17 +243,17 @@ exports.listPartyRole = function(req, res, next) {
         sendDoc(res, code, doc);
       })
       .catch(error => {
-        console.log("listPartyRole: error=" + error);
+        console.error("listPartyRole: error=" + error);
         sendError(res, internalError);
       })
     })
     .catch(error => {
-      console.log("listPartyRole: error=" + error);
+      console.error("listPartyRole: error=" + error);
       sendError(res, internalError);
     })
   })
   .catch(error => {
-    console.log("listPartyRole: error=" + error);
+    console.error("listPartyRole: error=" + error);
     sendError(res, internalError);
   })
 
@@ -316,27 +316,27 @@ exports.patchPartyRole = function(req, res, next) {
                   notificationUtils.publish(req,doc,old);
                 })
                 .catch((error) => {
-                  console.log("patchPartyRole error=" + error);
+                  console.error("patchPartyRole error=" + error);
                   return sendError(res, internalError);
                 });
             })
             .catch((error) => {
-              console.log("patchPartyRole error=" + error);
+              console.error("patchPartyRole error=" + error);
               return sendError(res, internalError);
             })
           })
         .catch((error) => {
-          console.log("patchPartyRole error=" + error);
+          console.error("patchPartyRole error=" + error);
           return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id"));
         });        
       })
       .catch((error) => {
-        console.log("patchPartyRole error=" + error);
+        console.error("patchPartyRole error=" + error);
         return sendError(res, internalError);
       });
   })
   .catch(error => {
-    console.log("patchPartyRole error=" + error);
+    console.error("patchPartyRole error=" + error);
     return sendError(res, error);
   });
 
@@ -382,12 +382,12 @@ exports.retrievePartyRole = function(req, res, next) {
         }
       })
       .catch(error => {
-        console.log("retrievePartyRole: error=" + error);
+        console.error("retrievePartyRole: error=" + error);
         sendError(res, internalError);
       });
   })
   .catch(error => {
-    console.log("retrievePartyRole: error=" + error);
+    console.error("retrievePartyRole: error=" + error);
     sendError(res, internalError);
   });
 

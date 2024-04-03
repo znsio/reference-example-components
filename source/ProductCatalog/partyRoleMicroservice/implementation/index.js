@@ -43,7 +43,7 @@ console.log('ComponentName:'+componentName);
 // add component name to url in swagger_ui
 fs.readFile(path.join(__dirname, './node_modules/swagger-ui-dist/index.html'), 'utf8', function (err,data) {
   if (err) {
-    return console.log(err);
+    return console.error(err);
   }
   var result = data.replace(/url: \"/g, 'url: \"/' + componentName );
   console.log('updating ' + path.join(__dirname, './node_modules/swagger-ui-dist/index.html'));

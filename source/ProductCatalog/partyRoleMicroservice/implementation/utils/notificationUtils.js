@@ -36,12 +36,12 @@ function index(req, res, next) {
       .then(doc => clean(doc))
       .then(doc => sendDoc(res, 200, doc))
       .catch(error => {
-        console.log("hub index: error=" + error);
+        console.error("hub index: error=" + error);
         sendError(res, new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Database error"));
       });
   })
   .catch(error => {
-    console.log("hub index: error=" + error);
+    console.error("hub index: error=" + error);
     sendError(res, new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Database connect error"));
   });
 
@@ -74,12 +74,12 @@ function show(req, res, next) {
           }
         })
         .catch(error => {
-          console.log("hub show: error=" + error);
+          console.error("hub show: error=" + error);
           sendError(res, new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Database error"));
         });
     })
     .catch(error => {
-      console.log("hub show: error=" + error);
+      console.error("hub show: error=" + error);
       sendError(res, new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Database connect error"));
     });
 
@@ -115,7 +115,7 @@ function register(req, res, next) {
         doc._query = JSON.stringify(query);
 
       } catch(err) {
-        console.log("notificationUtils::register: error=" + err);
+        console.error("notificationUtils::register: error=" + err);
         sendError(res, TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to process request"));
         return;
       }
@@ -130,7 +130,7 @@ function register(req, res, next) {
 
     })
     .catch( error => {
-      console.log("register: error=" + error.toString());
+      console.error("register: error=" + error.toString());
       sendError(res, error);
     });
 
@@ -203,7 +203,7 @@ function patch(req, res, next) {
       return sendError(res, internalError);
     });
   } catch(err) {
-    console.log("hub update: sendError - last catch");
+    console.error("hub update: sendError - last catch");
     sendError(res, new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to process request"));
   }
 }
@@ -241,21 +241,21 @@ function update(req, res, next) {
         .replaceOne(query, doc)
         .then(resp => sendReplacementResult(res, resp.result, doc))
         .catch(error => {
-          console.log("hub update: error=" + error);
+          console.error("hub update: error=" + error);
           sendError(res, internalError);
         });
       })
       .catch(error => {
-        console.log("hub update: error=" + error);
+        console.error("hub update: error=" + error);
         sendError(res, internalError);
       });
     })
     .catch(error => {
-      console.log("hub update: error=" + error);
+      console.error("hub update: error=" + error);
       sendError(res, new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to process request"));
     })
   } catch(err) {
-    console.log("hub update: sendError - last catch");
+    console.error("hub update: sendError - last catch");
     sendError(res, new TError(TErrorEnum.INTERNAL_SERVER_ERROR, "Unable to process request"));
   }
 
@@ -353,9 +353,9 @@ function publish(req,doc,old) {
     db.collection(HUB)
     .find(query).toArray()
     .then(clients => notify(db,clients,message))
-    .catch(error => console.log("notify error=" + error))
+    .catch(error => console.error("notify error=" + error))
   })
-  .catch(error => console.log("notify error=" + error));
+  .catch(error => console.error("notify error=" + error));
 
 };
 
@@ -372,7 +372,7 @@ function notify(db,clients,message) {
        db.collection(EVENTS)
       .deleteOne(message)
       .then(() => {})
-      .catch(err => console.log("notify clean-uperror=" + err))
+      .catch(err => console.error("notify clean-uperror=" + err))
     };
 
     Promise.all(promises)
@@ -381,12 +381,12 @@ function notify(db,clients,message) {
       cleanup();
     })
     .catch(err => {
-      console.log("notify: finished processing - error=" + err);
+      console.error("notify: finished processing - error=" + err);
       cleanup();
     });
 
   })
-  .catch(err => console.log("notify #3 error=" + err));
+  .catch(err => console.error("notify #3 error=" + err));
 
 };
 
@@ -416,7 +416,7 @@ function processMessage(db,client,message) {
       // console.log("processMessage: done");
     })
     .catch(err => {
-      console.log("processMessage error=" + err);
+      console.error("processMessage error=" + err);
       return reject();
     });
   });
