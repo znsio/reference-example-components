@@ -69,17 +69,17 @@ exports.createPartyRole = function(req, res, next) {
             notificationUtils.publish(req,payload);
           })
           .catch((error) => {
-            console.log("createPartyRole: error=" + error);
+            console.error("createPartyRole: error=" + error);
             sendError(res, internalError);
           })
       })
       .catch((error) => {
-        console.log("createPartyRole: error=" + error);
+        console.error("createPartyRole: error=" + error);
         sendError(res, internalError);
       })
     })
     .catch( error => {
-      console.log("createPartyRole: error=" + error.toString());
+      console.error("createPartyRole: error=" + error.toString());
       sendError(res, error);
     });
 
@@ -122,7 +122,7 @@ exports.deletePartyRole = function(req, res, next) {
           doc = cleanPayloadServiceType(doc);
           notificationUtils.publish(req,doc);
         } else {
-          sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+          sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"deletePartyRole: No resource with given id found"));
         }
  
         db.collection(resourceType)
@@ -131,14 +131,14 @@ exports.deletePartyRole = function(req, res, next) {
           if (doc.result.n == 1) {
               sendDoc(res, 204, {});
           } else { 
-              sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+              sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"deletePartyRole: No resource with given id found"));
           }
         }).catch(error => sendError(res, internalError))        
 
 
       })
       .catch(error => {
-        console.log("deletePartyRole: error=" + error);
+        console.error("deletePartyRole: error=" + error);
         sendError(res, internalError);
       });
       
@@ -243,17 +243,17 @@ exports.listPartyRole = function(req, res, next) {
         sendDoc(res, code, doc);
       })
       .catch(error => {
-        console.log("listPartyRole: error=" + error);
+        console.error("listPartyRole: error=" + error);
         sendError(res, internalError);
       })
     })
     .catch(error => {
-      console.log("listPartyRole: error=" + error);
+      console.error("listPartyRole: error=" + error);
       sendError(res, internalError);
     })
   })
   .catch(error => {
-    console.log("listPartyRole: error=" + error);
+    console.error("listPartyRole: error=" + error);
     sendError(res, internalError);
   })
 
@@ -298,7 +298,7 @@ exports.patchPartyRole = function(req, res, next) {
         .findOne(query)
         .then(old => {
           if (old==undefined) {
-            return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id"));
+            return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"patchPartyRole: No resource with given id"));
           }
 
           payload = swaggerUtils.updatePayloadServiceType(payload, req, 'id');
@@ -316,27 +316,27 @@ exports.patchPartyRole = function(req, res, next) {
                   notificationUtils.publish(req,doc,old);
                 })
                 .catch((error) => {
-                  console.log("patchPartyRole error=" + error);
+                  console.error("patchPartyRole error=" + error);
                   return sendError(res, internalError);
                 });
             })
             .catch((error) => {
-              console.log("patchPartyRole error=" + error);
+              console.error("patchPartyRole error=" + error);
               return sendError(res, internalError);
             })
           })
         .catch((error) => {
-          console.log("patchPartyRole error=" + error);
-          return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id"));
+          console.error("patchPartyRole error=" + error);
+          return sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"patchPartyRole: No resource with given id"));
         });        
       })
       .catch((error) => {
-        console.log("patchPartyRole error=" + error);
+        console.error("patchPartyRole error=" + error);
         return sendError(res, internalError);
       });
   })
   .catch(error => {
-    console.log("patchPartyRole error=" + error);
+    console.error("patchPartyRole error=" + error);
     return sendError(res, error);
   });
 
@@ -378,16 +378,16 @@ exports.retrievePartyRole = function(req, res, next) {
           doc = cleanPayloadServiceType(doc);
           sendDoc(res, 200, doc)
         } else {
-          sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"No resource with given id found"));
+          sendError(res, new TError(TErrorEnum.RESOURCE_NOT_FOUND,"retrievePartyRole: No resource with given id found"));
         }
       })
       .catch(error => {
-        console.log("retrievePartyRole: error=" + error);
+        console.error("retrievePartyRole: error=" + error);
         sendError(res, internalError);
       });
   })
   .catch(error => {
-    console.log("retrievePartyRole: error=" + error);
+    console.error("retrievePartyRole: error=" + error);
     sendError(res, internalError);
   });
 

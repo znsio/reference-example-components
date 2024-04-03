@@ -25,4 +25,4 @@ api:
       enabled: true
       url: http://datadog-agent.default.svc.cluster.local:4318/v1/traces
 partyrole:
-  image: csotiriou/partyroleapi:0.4
+  image: lesterthomas/partyroleapi:1.0

@@ -169,20 +169,6 @@ function getPayloadType(req) {
   return payloadType;
 };
 
-function getPayloadSchema_old(req) {
-  var schema=null;
-  req.swagger.operationParameters.every(function(param) {
-    if(param.schema.in === 'body') {
-    	console.log("getPayloadSchema:: keys=" + Object.keys(param.schema));
-    	console.log("getPayloadSchema:: schema=" + JSON.stringify(param.schema.schema,null,2));
-      schema = param.schema.schema;
-      return false; // break 
-    }
-    return true; // continue with next
-  });
-  return schema;
-};
-
 function getURLScheme() {
   const swaggerDoc = getSwaggerDoc();
   return swaggerDoc.schemes[0];

@@ -68,17 +68,17 @@ exports.listenToPartyRoleAttributeValueChangeEvent = function(req, res, next) {
             notificationUtils.publish(req,payload);
           })
           .catch((error) => {
-            console.log("listenToPartyRoleAttributeValueChangeEvent: error=" + error);
+            console.error("listenToPartyRoleAttributeValueChangeEvent: error=" + error);
             sendError(res, internalError);
           })
       })
       .catch((error) => {
-        console.log("listenToPartyRoleAttributeValueChangeEvent: error=" + error);
+        console.error("listenToPartyRoleAttributeValueChangeEvent: error=" + error);
         sendError(res, internalError);
       })
     })
     .catch( error => {
-      console.log("listenToPartyRoleAttributeValueChangeEvent: error=" + error.toString());
+      console.error("listenToPartyRoleAttributeValueChangeEvent: error=" + error.toString());
       sendError(res, error);
     });
 
@@ -124,17 +124,17 @@ exports.listenToPartyRoleCreateEvent = function(req, res, next) {
             notificationUtils.publish(req,payload);
           })
           .catch((error) => {
-            console.log("listenToPartyRoleCreateEvent: error=" + error);
+            console.error("listenToPartyRoleCreateEvent: error=" + error);
             sendError(res, internalError);
           })
       })
       .catch((error) => {
-        console.log("listenToPartyRoleCreateEvent: error=" + error);
+        console.error("listenToPartyRoleCreateEvent: error=" + error);
         sendError(res, internalError);
       })
     })
     .catch( error => {
-      console.log("listenToPartyRoleCreateEvent: error=" + error.toString());
+      console.error("listenToPartyRoleCreateEvent: error=" + error.toString());
       sendError(res, error);
     });
 
@@ -180,17 +180,17 @@ exports.listenToPartyRoleDeleteEvent = function(req, res, next) {
             notificationUtils.publish(req,payload);
           })
           .catch((error) => {
-            console.log("listenToPartyRoleDeleteEvent: error=" + error);
+            console.error("listenToPartyRoleDeleteEvent: error=" + error);
             sendError(res, internalError);
           })
       })
       .catch((error) => {
-        console.log("listenToPartyRoleDeleteEvent: error=" + error);
+        console.error("listenToPartyRoleDeleteEvent: error=" + error);
         sendError(res, internalError);
       })
     })
     .catch( error => {
-      console.log("listenToPartyRoleDeleteEvent: error=" + error.toString());
+      console.error("listenToPartyRoleDeleteEvent: error=" + error.toString());
       sendError(res, error);
     });
 
@@ -236,17 +236,17 @@ exports.listenToPartyRoleStateChangeEvent = function(req, res, next) {
             notificationUtils.publish(req,payload);
           })
           .catch((error) => {
-            console.log("listenToPartyRoleStateChangeEvent: error=" + error);
+            console.error("listenToPartyRoleStateChangeEvent: error=" + error);
             sendError(res, internalError);
           })
       })
       .catch((error) => {
-        console.log("listenToPartyRoleStateChangeEvent: error=" + error);
+        console.error("listenToPartyRoleStateChangeEvent: error=" + error);
         sendError(res, internalError);
       })
     })
     .catch( error => {
-      console.log("listenToPartyRoleStateChangeEvent: error=" + error.toString());
+      console.error("listenToPartyRoleStateChangeEvent: error=" + error.toString());
       sendError(res, error);
     });
 
