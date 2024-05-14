@@ -29,7 +29,7 @@ partyrole:
   image: lesterthomas/partyroleapi:1.0
   versionlabel: partyroleapi-1.0
 
-# Nopo11y configurations, requires Nopo11y stack. Ref: https://github.com/znsio/charts
+# Nopo11y configurations, requires Nopo11y stack. Ref: https://github.com/znsio/nopo11y
 nopo11y:
   enabled: false # Enabling it will give you basic dashboard with golden signals, alerts and SLOs.
   namespace: observability
