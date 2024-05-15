@@ -21,24 +21,11 @@ partyrole:
   image: lesterthomas/partyroleapi:1.0
   versionlabel: partyroleapi-1.0
 
-# Nopo11y configurations, requires Nopo11y stack. Ref: https://github.com/znsio/nopo11y
+# Basic nopo11y configurations, requires Nopo11y stack. Ref: https://github.com/znsio/nopo11y
+# Additional options are available at https://github.com/znsio/nopo11y/tree/main/charts/nopo11y#configuration
 nopo11y:
   enabled: false # Enabling it will give you basic dashboard with golden signals, alerts and SLOs.
-  namespace: observability
+  namespace: observability # use the same namespace you used during installation of nopo11y stack
   appLabel: "sample" # Replace it with your app label
-  includeReleaseNameInMetricsLabels: false
+  includeReleaseNameInMetricsLabels: true
   deploymentName: "sample" # Replace it with your deployment name
-  prometheusReleaseLabel: "nopo11y-stack"
-  availabilitySLO: 99.9 # Value is in percentage
-  latencySLO: 99 # Value is in percentage
-  latency: 1000 # Value is in milliseconds
-  errorRate5xx: 0.05 # Value is in percentage
-  errorRate4xx: 5 # Value is in percentage
-  grafanaURL: "" # Grafana URL
-  logLabel: "" # Filter logs with certain label
-  logLabelValue: "" # value for the given label
-  istioMetrics:
-    enabled: true # Disable it if using ingress
-  nginxIngressMetrics:
-    enabled: false # Enable it if using ingress
-    ingressName: "sample-ingress"
